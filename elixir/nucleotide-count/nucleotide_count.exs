@@ -16,7 +16,7 @@ defmodule NucleotideCount do
   def count(strand, nucleotide) do
     Enum.filter(strand, fn(x) -> x == nucleotide end)
      |> List.to_string()
-     |>  String.length()
+     |> String.length()
   end
 
   @doc """
@@ -29,6 +29,9 @@ defmodule NucleotideCount do
   """
   @spec histogram([char]) :: map
   def histogram(strand) do
-
+    Map.put(%{}, ?A, count(strand, ?A))
+    |> Map.put(?T, count(strand, ?T))
+    |> Map.put(?C, count(strand, ?C))
+    |> Map.put(?G, count(strand, ?G))
   end
 end
